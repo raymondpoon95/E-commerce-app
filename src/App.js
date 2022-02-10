@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import { auth } from "./firebase/firebase.utils";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import Homepage from "./pages/homepage/Homepage";
 import ShopPage from "./pages/shop/Shop";
 import SignInAndSignUp from "./pages/sign-in-sign-up/Sign-in-sign-up";
-import { auth } from "./firebase/firebase.utils";
 
 class App extends Component {
   constructor() {
@@ -21,6 +21,7 @@ class App extends Component {
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       this.setState({ currentUser: user });
+
       console.log(user);
     });
   }
@@ -32,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/shop" element={<ShopPage />} />
