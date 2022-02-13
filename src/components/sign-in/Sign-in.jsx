@@ -23,7 +23,7 @@ class SignIn extends Component {
   }
 
   handleChange(e) {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
     this.setState({ [name]: value });
   }
 
