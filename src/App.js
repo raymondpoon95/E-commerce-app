@@ -9,6 +9,7 @@ import Homepage from "./pages/homepage/Homepage";
 import ShopPage from "./pages/shop/Shop";
 import SignInAndSignUp from "./pages/sign-in-sign-up/Sign-in-sign-up";
 import CheckoutPage from "./pages/checkout/checkout";
+import CategoryPage from "./pages/collection/Collection";
 
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -45,7 +46,8 @@ class App extends Component {
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/*" element={<ShopPage />} />
+          <Route path="/shop/:collectionId" element={<CategoryPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route
             path="/signin"
