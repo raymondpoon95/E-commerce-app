@@ -16,7 +16,7 @@ const CollectionPage = () => {
       setTitle(SHOP_DATA[params.collectionId].title);
       setItems(SHOP_DATA[params.collectionId].items);
     }
-  }, [params]);
+  }, []);
 
   return (
     <div className="collection-page">
