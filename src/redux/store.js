@@ -3,9 +3,13 @@ import { persistStore } from "redux-persist"; // allows browser to cache the sto
 import logger from "redux-logger";
 import rootReducer from "./root-reducer";
 
-// const middlewares = [logger];
+const middlewares = [];
 
-const store = createStore(rootReducer, applyMiddleware());
+if (process.env.NODE_ENV === "development") {
+  middlewares.push(logger);
+}
+
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 const persistor = persistStore(store);
 
