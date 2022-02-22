@@ -1,49 +1,57 @@
 import React from "react";
-import "./checkout.styles.scss";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import CheckoutItem from "../../components/checkout-item/Checkout-item";
+import StripeCheckoutButton from "../../components/stripe-button/Stripe-button";
+
+import {
+  CheckoutPageContainer,
+  CheckoutHeaderContainer,
+  HeaderBlock,
+  Total,
+  TestWarning,
+} from "./checkout.styles";
+
 import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
-import StripeCheckoutButton from "../../components/stripe-button/Stripe-button";
 
 const CheckoutPage = ({ cartItems, total }) => {
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlock>
           <span>Product</span>
-        </div>
+        </HeaderBlock>
 
-        <div className="header-block">
+        <HeaderBlock>
           <span>Description</span>
-        </div>
+        </HeaderBlock>
 
-        <div className="header-block">
+        <HeaderBlock>
           <span>Quantity</span>
-        </div>
+        </HeaderBlock>
 
-        <div className="header-block">
+        <HeaderBlock>
           <span>Price</span>
-        </div>
+        </HeaderBlock>
 
-        <div className="header-block">
+        <HeaderBlock>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlock>
+      </CheckoutHeaderContainer>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className="total">Total: £{total}</div>
-      <div className="test-warning">
+      <Total>Total: £{total}</Total>
+      <TestWarning>
         *Please use the following test credit card details for payments*
         <br></br>
         4242 4242 4242 4242 - Exp:01/25 - CVV:123
-      </div>
+      </TestWarning>
       <StripeCheckoutButton price={total} />
-    </div>
+    </CheckoutPageContainer>
   );
 };
 

@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
-import "./collection-item.styles.scss";
-import CustomButton from "../custom-button/Custom-button";
+import {
+  CollectionItemContainer,
+  CollectionFooterContainer,
+  AddButton,
+  BackgroundImage,
+  NameContainer,
+  PriceContainer,
+} from "./collection-item.styles";
 
 const CollectionItem = ({ item, addItem, toggleCartHidden, hidden }) => {
   const handleClickAddItem = (item) => {
@@ -11,17 +17,18 @@ const CollectionItem = ({ item, addItem, toggleCartHidden, hidden }) => {
   };
 
   const { name, price, imageUrl } = item;
+
   return (
-    <div className="collection-item">
-      <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">£{price}</span>
-      </div>
-      <CustomButton onClick={() => handleClickAddItem(item)} inverted>
+    <CollectionItemContainer>
+      <BackgroundImage className="image" imageUrl={imageUrl} />
+      <CollectionFooterContainer>
+        <NameContainer className="name">{name}</NameContainer>
+        <PriceContainer className="price">£{price}</PriceContainer>
+      </CollectionFooterContainer>
+      <AddButton onClick={() => handleClickAddItem(item)} inverted>
         Add to cart
-      </CustomButton>
-    </div>
+      </AddButton>
+    </CollectionItemContainer>
   );
 };
 
