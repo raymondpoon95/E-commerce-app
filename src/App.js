@@ -47,7 +47,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/shop/*" element={<ShopPage />} />
-          <Route path="/shop/:collectionId" element={<CategoryPage />} />
+          {/* <Route path="/shop/:collectionId" element={<CategoryPage />} /> */}
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route
             path="/signin"
