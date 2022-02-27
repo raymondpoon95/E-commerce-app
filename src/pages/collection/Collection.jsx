@@ -31,7 +31,7 @@ const CollectionPage = () => {
 };
 
 // const mapStateToProps = (state) => ({
-//   collection: selectCollection(params.collectionId)(state),
+//   collection: selectCollection(collectionId)(state),
 // });
 
 // export default connect(mapStateToProps)(CollectionPage);

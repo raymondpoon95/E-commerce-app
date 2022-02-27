@@ -1,50 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import {
-  db,
-  convertCollectionsSnapshotToMap,
-} from "../../firebase/firebase.utils";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
+// import {
+//   db,
+//   convertCollectionsSnapshotToMap,
+// } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
-import { updateCollections } from "../../redux/shop/shop.actions";
+import { createStructuredSelector } from "reselect";
+import {
+  selectIsCollectionFetching,
+  selectIsCollectionsLoaded,
+} from "../../redux/shop/shop.selectors";
+import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
 
 import CollectionsOverview from "../../components/collections-overview/Collections-overview";
 import CollectionPage from "../collection/Collection";
 import WithSpinner from "../../components/with-spinner/With-spinner";
+// import CollectionsOverviewContainer from "../../components/collections-overview/Collections-overview.container";
 
-const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-const ShopPage = ({ updateCollections }) => {
-  const [loading, setLoading] = useState(true);
-
-  let unsubscribeFromSnapshot = null;
-
+const ShopPage = ({ fetchCollectionsStartAsync, isCollectionLoaded }) => {
   useEffect(() => {
-    const collectionRef = db.collection("collections");
-
-    unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      setLoading(false);
-    });
-
-    return () => {
-      unsubscribeFromSnapshot = null;
-    };
+    fetchCollectionsStartAsync();
   }, []);
 
   return (
     <div className="shop-page">
       <Routes>
-        <Route
-          path=""
-          element={<CollectionOverviewWithSpinner isLoading={loading} />}
-        />
+        <Route path="" element={<CollectionsOverview />} />
         <Route
           path=":collectionId"
           element={
             <CollectionPageWithSpinner
-              isLoading={loading}
+              isLoading={!isCollectionLoaded}
               props={useLocation()}
             />
           }
@@ -54,9 +42,14 @@ const ShopPage = ({ updateCollections }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  updateCollections: (collectionsMap) =>
-    dispatch(updateCollections(collectionsMap)),
+const mapStateToProps = createStructuredSelector({
+  isCollectionLoaded: selectIsCollectionsLoaded,
 });
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+const mapDispatchToProps = (dispatch) => ({
+  // updateCollections: (collectionsMap) =>
+  //   dispatch(updateCollections(collectionsMap)),
+  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
