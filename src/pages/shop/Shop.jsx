@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
-// import {
-//   db,
-//   convertCollectionsSnapshotToMap,
-// } from "../../firebase/firebase.utils";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import {
-  selectIsCollectionFetching,
-  selectIsCollectionsLoaded,
-} from "../../redux/shop/shop.selectors";
+import { selectIsCollectionsLoaded } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
 
 import CollectionsOverview from "../../components/collections-overview/Collections-overview";
 import CollectionPage from "../collection/Collection";
 import WithSpinner from "../../components/with-spinner/With-spinner";
-// import CollectionsOverviewContainer from "../../components/collections-overview/Collections-overview.container";
 
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const ShopPage = ({ fetchCollectionsStartAsync, isCollectionLoaded }) => {
   useEffect(() => {
     fetchCollectionsStartAsync();
-  }, []);
+  }, [fetchCollectionsStartAsync]);
 
   return (
     <div className="shop-page">
@@ -47,8 +39,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // updateCollections: (collectionsMap) =>
-  //   dispatch(updateCollections(collectionsMap)),
   fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
 });
 

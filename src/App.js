@@ -9,7 +9,6 @@ import Homepage from "./pages/homepage/Homepage";
 import ShopPage from "./pages/shop/Shop";
 import SignInAndSignUp from "./pages/sign-in-sign-up/Sign-in-sign-up";
 import CheckoutPage from "./pages/checkout/checkout";
-import CategoryPage from "./pages/collection/Collection";
 
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
