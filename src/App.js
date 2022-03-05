@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "./components/header/Header";
 import Homepage from "./pages/homepage/Homepage";
@@ -12,44 +11,28 @@ import CheckoutPage from "./pages/checkout/checkout";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
 
-class App extends Component {
-  unsubscribeFromAuth = null;
+const App = () => {
+  const currentUser = useSelector(selectCurrentUser); // useSelector is a hook that is used to replace mapStateToProps, this grabs the state
+  const dispatch = useDispatch(); // useDispatch is a hook that is used to replace mapDispatchToProps
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-    checkUserSession();
-  }
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  return (
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/shop/*" element={<ShopPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route
+          path="/signin"
+          element={currentUser ? <Homepage /> : <SignInAndSignUp />}
+        />
+      </Routes>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/shop/*" element={<ShopPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route
-            path="/signin"
-            element={
-              this.props.currentUser ? <Homepage /> : <SignInAndSignUp />
-            }
-          />
-        </Routes>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: () => dispatch(checkUserSession()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

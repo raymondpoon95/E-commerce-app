@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
 import {
   CollectionItemContainer,
@@ -10,13 +10,16 @@ import {
   PriceContainer,
 } from "./collection-item.styles";
 
-const CollectionItem = ({ item, addItem, toggleCartHidden, hidden }) => {
-  const handleClickAddItem = (item) => {
-    addItem(item);
-    if (hidden) toggleCartHidden();
-  };
+const CollectionItem = ({ item }) => {
+  const hidden = useSelector(state => state.cart.hidden);
+  const dispatch = useDispatch();
 
   const { name, price, imageUrl } = item;
+
+  const handleClickAddItem = (item) => {
+    dispatch(addItem(item));
+    if (hidden) dispatch(toggleCartHidden());
+  };
 
   return (
     <CollectionItemContainer>
@@ -32,13 +35,4 @@ const CollectionItem = ({ item, addItem, toggleCartHidden, hidden }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { hidden } }) => ({
-  hidden,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CollectionItem);
+export default CollectionItem;

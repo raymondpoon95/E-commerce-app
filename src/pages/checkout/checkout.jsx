@@ -1,6 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/Checkout-item";
 import StripeCheckoutButton from "../../components/stripe-button/Stripe-button";
 
@@ -17,7 +16,10 @@ import {
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
 
-const CheckoutPage = ({ cartItems, total }) => {
+const CheckoutPage = () => {
+  const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectCartTotal);
+
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
@@ -55,9 +57,9 @@ const CheckoutPage = ({ cartItems, total }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  total: selectCartTotal,
-});
+// const mapStateToProps = createStructuredSelector({
+//   cartItems: selectCartItems,
+//   total: selectCartTotal,
+// });
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default CheckoutPage;
