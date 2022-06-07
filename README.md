@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+<h1 align="center">
+  E-commerce-app
+</h1>
+This is an application that has been built out and developed using [JavaScript](https://www.javascript.com/), [React](https://reactjs.org/) and [Styled-components](https://styled-components.com/). It also implements [Redux](https://redux.js.org/) and [Redux-saga](https://redux-saga.js.org/).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an E-commerce clothing app built to challenge myself and push me outside of my comfort zone to work with upcoming, unfamiliar technologies. But most importantly to put what I've learnt into practice by trying to build a real world application. It uses firebase for user authentication and mirrors logic to add items to your cart.
 
-## Available Scripts
+I've tried to build this following best practice, I will try and continue to update it by adding new tests and features, if you have any improvements or advice please let me know 🙏
 
-In the project directory, you can run:
+## 🚀 Getting started
 
-### `npm start`
+1. **Install the site locally to make any changes.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   First you want to download the repo locally, do so by using `git clone` followed by the url to the repository.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   Or just copy and paste this into your terminal `git clone https://github.com/raymondpoon95/E-commerce-app.git`
 
-### `npm test`
+   Now before you try and run the project it is important to use npm install first, as this project uses npm and has peer dependencies.
+   `npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Getting it up and running.**
 
-### `npm run build`
+   Make sure that you have `Node` installed on your machine before running the next line of code.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   If you do not understand how to install node here is a [small guide](https://nodejs.dev/download/package-manager/) that you can follow.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Navigate into your new site’s directory and start it up.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
+   npm run start
+   ```
 
-### `npm run eject`
+3. **Open the source code and start editing!**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   Now you should be able to see it running locally at `http://localhost:3000/`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   Now you can start changing the code as much as you want and you will be able to see the changes in real time as well! 😎
