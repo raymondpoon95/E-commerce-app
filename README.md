@@ -2,7 +2,7 @@
   E-commerce-app
 </h1>
 
-This is an application that has been built out and developer using [Javascript](https://www.javascript.com/), [React](https://reactjs.org/) and [Styled-components](https://styled-components.com/). It also implements [Redux](https://redux.js.org/) and [Redux-saga](https://redux-saga.js.org/).
+This is an application that has been built out and developed using [Javascript](https://www.javascript.com/), [React](https://reactjs.org/) and [Styled-components](https://styled-components.com/). It also implements [Redux](https://redux.js.org/) and [Redux-saga](https://redux-saga.js.org/).
 
 This is an E-commerce clothing app built to challenge myself and push me outside of my comfort zone to work with upcoming, unfamiliar technologies. But most importantly to put what I've learnt into practice by trying to build a real world application. It uses firebase for user authentication and mirrors logic to add items to your cart.
 
